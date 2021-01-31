@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Widget = styled.div`
   margin-top: 24px;
@@ -52,9 +52,12 @@ Widget.Topic = styled.a`
   padding: 10px 15px;
   margin-bottom: 8px;
   cursor: pointer;
+  border: 2px solid rgba(0,0,0,0);
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: .3s;
   display: block;
+
+  ${({ selected }) => selected && css`border-color: ${({ theme }) => theme.colors.primary}`};
   
   &:hover,
   &:focus {

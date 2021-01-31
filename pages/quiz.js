@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
@@ -27,7 +27,9 @@ function QuestionWidget({
   totalQuestions,
   onSubmit,
 }) {
+  const [selectedAlternative, setSelectedAlternative] = useState('');
   const questionId = `question__${questionIndex}`;
+
   return (
     <Widget>
       <Widget.Header>
@@ -47,12 +49,8 @@ function QuestionWidget({
         src={question.image}
       />
       <Widget.Content>
-        <h2>
-          {question.title}
-        </h2>
-        <p>
-          {question.description}
-        </p>
+        <h2>{question.title}</h2>
+        <p>{question.description}</p>
 
         <form
           onSubmit={(infosDoEvento) => {
@@ -66,12 +64,15 @@ function QuestionWidget({
               <Widget.Topic
                 as='label'
                 htmlFor={alternativeId}
+                selected={selectedAlternative === alternativeId}
+                key={alternativeId}
               >
                 <input
-                  // style={{ display: 'none' }}
+                  style={{ display: 'none' }}
                   id={alternativeId}
                   name={questionId}
                   type='radio'
+                  onChange={() => { setSelectedAlternative(alternativeId); }}
                 />
                 {alternative}
               </Widget.Topic>
