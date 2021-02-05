@@ -1,34 +1,33 @@
-import PropTypes from 'prop-types';
+// import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.contrastText};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  padding: 10px 16px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 1;
-  text-transform: uppercase;
-  outline: 0;
-  margin-top: 24px;
-  transition: .3s;
-  cursor: pointer;
-  &:hover,
-  &:focus {
-    opacity: .5;
+
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #9816D9;
+
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  
+  border: none;
+  outline: none;
+
+  transition: all 0.2s ease;
+
+  :disabled, :hover:disabled {
+    background-color: ${({ theme }) => theme.colors.fadedFill}
   }
-  &:disabled {
-    background-color: #979797;
-    cursor: not-allowed;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
   }
 `;
-
-Button.propTypes = {
-  type: PropTypes.oneOf(['submit', 'type', 'button']).isRequired,
-  children: PropTypes.node.isRequired,
-};
 
 export default Button;
