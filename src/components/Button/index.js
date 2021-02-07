@@ -19,14 +19,19 @@ const Button = styled.button`
   border: none;
   outline: none;
 
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 
   :disabled, :hover:disabled {
-    background-color: ${({ theme }) => theme.colors.fadedFill}
+    background-color: ${({ theme }) => theme.colors.fadedFill};
+    color: ${({ theme }) => theme.colors.textColor}
   }
 
   :hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
+
+  :enabled {
+    cursor: pointer;
   }
 `;
 

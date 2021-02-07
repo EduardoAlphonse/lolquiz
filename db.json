@@ -4,25 +4,27 @@
   "description": "Teste seus conhecimentos sobre League of Legends.",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "image": "https://images6.alphacoders.com/974/974337.jpg",
+      "title": "Qual campeão foi banido dos Solari por ter traído o Deus Sol?",
       "description": "Essa é pra aquecer",
       "answer": 2,
       "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
+        "Leona",
+        "Neeko",
+        "Diana",
+        "Veigar"
       ]
     },
     {
       "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
+      "title": "Qual Campeão é conhecido por ter um passado desonrado?",
       "description": "Faz tempo em haha",
-      "answer": 0,
+      "answer": 1,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+        "Riven",
+        "Yone",
+        "Draven",
+        "Kayn"
       ]
     }
   ],
@@ -32,6 +34,7 @@
   "theme": {
     "colors": {
       "primary": "#9816D9",
+      "textColor": "#2E2E2E",
       "primaryDark": "#6B069D",
       "fadedText": "#B2B2B2",
       "fadedFill": "#D9D9D9",

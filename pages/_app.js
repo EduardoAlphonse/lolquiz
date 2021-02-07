@@ -59,6 +59,22 @@ const GlobalStyle = createGlobalStyle`
   body, input, button {
     /* font-family: ProductSans, 'Poppins', 'Lato', sans-serif; */
     font-family: ProductSans, sans-serif;
+    letter-spacing: 0.1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  p {
+    
   }
 `;
 

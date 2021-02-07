@@ -1,58 +1,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
-// import db from '../db.json';
 
 import ScreenContainer from '../src/components/ScreenContainer';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
-
-const LoginFrame = styled.div`
-  display: flex;
-  width: 33%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.background};
-  padding: 0 40px;
-
-  font-size: 1.25rem;
-
-  .title {
-    @media (max-width: 1400px) {
-      margin-bottom: 50px;
-    }
-    
-    @media (min-width: 1401px) {
-      margin-bottom: 100px;
-    }
-
-    font-size: 2rem;
-    font-weight: 600;
-  }
-
-  form {
-    position: relative;
-    width: 100%;
-
-    p {
-      margin-bottom: 10px;
-    }
-
-    .ps {
-      font-size: 1rem;
-      color: ${({ theme }) => theme.colors.primary}
-    }
-  }
-`;
-
-const ScoreFrame = styled.div`
-  display: flex;
-  width: 67%;
-  justify-content: center;
-  align-items: center;
-  background-color: #210231;
-`;
+import BiggerFrame from '../src/components/BiggerFrame';
+import SmallerFrame from '../src/components/SmallerFrame';
 
 export default function Home() {
   const [name, setName] = useState('');
@@ -61,34 +14,35 @@ export default function Home() {
 
   function submitForm(event) {
     event.preventDefault();
-    if (name.length > 2 && name.length < 11) {
+    if (name.length > 2 && name.length < 16) {
       router.push(`/quiz?name=${name}`);
     }
   }
 
   return (
     <ScreenContainer>
-      <LoginFrame>
-        <span className='title'>LOL QUIZ</span>
+      <SmallerFrame>
+        <h1>LOL QUIZ</h1>
         <form>
           <p>Escolha seu nome:</p>
-          <p className='ps'>Necessário ter entre 3 e 10 caracteres.</p>
+          <p className='ps'>Necessário ter entre 3 e 15 caracteres.</p>
           <Input
             onChange={(event) => setName(event.target.value)}
             placeHolder='Ex.: LoLSage7'
             iconName='user'
           />
           <Button
+            type='subimt'
             onClick={submitForm}
-            disabled={name.length < 3 || name.length > 10}
+            disabled={name.length < 3 || name.length > 15}
           >
             JOGAR
           </Button>
         </form>
-      </LoginFrame>
-      <ScoreFrame>
+      </SmallerFrame>
+      <BiggerFrame>
         Score frame
-      </ScoreFrame>
+      </BiggerFrame>
     </ScreenContainer>
   );
 }
