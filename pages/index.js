@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <ScreenContainer>
       <SmallerFrame>
-        <h1>LOL QUIZ</h1>
+        <h1 className='title'>LOL QUIZ</h1>
         <form>
           <p>Escolha seu nome:</p>
           <p className='ps'>Necessário ter entre 3 e 15 caracteres.</p>

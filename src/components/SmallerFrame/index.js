@@ -12,16 +12,16 @@ const SmallerFrame = styled.div`
   flex-direction: column;
   justify-content: ${({ justify = 'center' }) => position[justify]};
   background-color: ${({ theme }) => theme.colors.background};
-  padding: 70px 40px 70px;
+  padding: 30px 40px;
 
   font-size: 1.25rem;
 
   .title {
-    @media (max-width: 1400px) {
+    @media screen and (max-width: 1400px) {
       margin-bottom: 50px;
     }
     
-    @media (min-width: 1401px) {
+    @media screen and (min-width: 1401px) {
       margin-bottom: 100px;
     }
 

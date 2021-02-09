@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+// eslint-disable-next-line import/no-cycle
+import { QuizContext } from '../../../pages/quiz';
 
 // const correctStyle = css`
 //   background-color: ${({ theme }) => theme.colors.success};
@@ -48,6 +51,15 @@ const StyledCheckbox = styled.div`
 function Checkbox({
   id, value, name, onChange, children,
 }) {
+  const { selected, finished } = useContext(QuizContext);
+
+  function handleChange(onChange) {
+    if (finished) {
+      return;
+    }
+    onChange();
+  }
+
   return (
     <StyledCheckbox>
       <input
@@ -55,7 +67,8 @@ function Checkbox({
         id={id}
         value={value}
         name={name}
-        onChange={onChange}
+        onChange={() => handleChange(onChange)}
+        checked={selected === value}
       />
       <label htmlFor={id}>
         {children}

@@ -7,7 +7,7 @@
       "image": "https://images6.alphacoders.com/974/974337.jpg",
       "title": "Qual campeão foi banido dos Solari por ter traído o Deus Sol?",
       "description": "Essa é pra aquecer",
-      "answer": 2,
+      "answer": "Diana",
       "alternatives": [
         "Leona",
         "Neeko",
@@ -19,12 +19,12 @@
       "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
       "title": "Qual Campeão é conhecido por ter um passado desonrado?",
       "description": "Faz tempo em haha",
-      "answer": 1,
+      "answer": "Yasuo",
       "alternatives": [
         "Riven",
-        "Yone",
-        "Draven",
-        "Kayn"
+        "Yasuo",
+        "Kayn",
+        "Yone"
       ]
     }
   ],
