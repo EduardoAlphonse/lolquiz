@@ -21,6 +21,5 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'linebreak-style': ['error', 'windows'],
     'jsx-quotes': ['error', 'prefer-single'],
-    'react/jsx-one-expression-per-line': [{ allow: 'none' }],
   },
 };

@@ -26,6 +26,18 @@
         "Kayn",
         "Yone"
       ]
+    },
+    {
+      "image": "https://cdnb.artstation.com/p/assets/images/images/029/988/459/large/foritis-wong-blossom-yasuo-yone-c.jpg",
+      "title": "Qual Campeão é conhecido por ter um passado desonrado?",
+      "description": "Faz tempo em haha",
+      "answer": "Yasuo",
+      "alternatives": [
+        "Riven",
+        "Yasuo",
+        "Kayn",
+        "Yone"
+      ]
     }
   ],
   "external": [
@@ -33,14 +45,27 @@
   ],
   "theme": {
     "colors": {
-      "primary": "#9816D9",
-      "textColor": "#2E2E2E",
-      "primaryDark": "#6B069D",
-      "fadedText": "#B2B2B2",
+      "textColor": {
+        "color": "#2E2E2E",
+        "faded": "#B2B2B2"
+      },
+      "primary": {
+        "color": "#9816D9",
+        "dark": "#6B069D",
+        "shadow": [170, 0, 255, 0.2]
+      },
+      "green": {
+        "color": "#23D723",
+        "dark": "#0ba10b",
+        "shadow": [0, 255, 0, 0.2]
+      },
+      "red": {
+        "color": "#D72323",
+        "dark": "#a60f0f",
+        "shadow": [215, 35, 35, 0.2]
+      },
       "fadedFill": "#D9D9D9",
-      "background": "#F5F0F7",
-      "success": "#23D723",
-      "fail": "#D72323"
+      "background": "#F5F0F7"
     },
     "borderRadius": "4px"
   }

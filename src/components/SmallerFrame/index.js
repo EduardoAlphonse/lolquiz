@@ -14,8 +14,6 @@ const SmallerFrame = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 30px 40px;
 
-  font-size: 1.25rem;
-
   .title {
     @media screen and (max-width: 1400px) {
       margin-bottom: 50px;
@@ -29,6 +27,10 @@ const SmallerFrame = styled.div`
     font-weight: 600;
   }
 
+  .question {
+    margin: 30px 0;
+  }
+
   form {
     position: relative;
     width: 100%;
@@ -37,10 +39,10 @@ const SmallerFrame = styled.div`
       margin-bottom: 10px;
     }
 
-    .ps {
-      font-size: 1rem;
-      color: ${({ theme }) => theme.colors.primary}
-    }
+  }
+
+  button {
+    margin-top: 20px;
   }
 `;
 

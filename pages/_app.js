@@ -57,8 +57,10 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body, input, button {
-    font-family: ProductSans, sans-serif;
-    letter-spacing: 0.1rem;
+    font-family: 'Open Sans', ProductSans, sans-serif;
+    letter-spacing: 0.04rem;
+    font-size: 1.3rem;
+    color: ${({ theme }) => theme.colors.textColor.color}
   }
 
   h1 {
@@ -69,11 +71,13 @@ const GlobalStyle = createGlobalStyle`
 
   h2 {
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
-  p {
-    
+  .ps {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.colors.primary.color};
+    font-weight: 600;
   }
 `;
 

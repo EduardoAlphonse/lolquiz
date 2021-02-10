@@ -5,31 +5,20 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-cycle
 import { QuizContext } from '../../../pages/quiz';
 
-// const correctStyle = css`
-//   background-color: ${({ theme }) => theme.colors.success};
-//   color: #FFFFFF;
-// `;
-
-// const wrongStyle = css`
-//   background-color: ${({ theme }) => theme.colors.success};
-//   color: #FFFFFF;
-// `;
-
 const StyledCheckbox = styled.div`
-  margin-bottom: 20px;
-
-  border: 2px solid ${({ theme }) => theme.colors.textColor};
+  border: 2px solid ${({ theme }) => theme.colors.textColor.color};
   box-sizing: border-box;
   border-radius: 5px;
+  margin-bottom: 20px;
 
   input {
     display: none;
   }
 
   label {
-    font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.textColor};
-    font-weight: 500;
+    font-size: 1.3rem;
+    color: ${({ theme }) => theme.colors.textColor.color};
+    font-weight: 600;
 
     padding: 15px;
     width: 100%;
@@ -43,21 +32,21 @@ const StyledCheckbox = styled.div`
   }
 
   input:checked + label {
-    background-color: ${({ theme }) => theme.colors.textColor};
+    background-color: ${({ theme }) => theme.colors.textColor.color};
     color: #FFFFFF;
   }
 `;
 
 function Checkbox({
-  id, value, name, onChange, children,
+  id, value, name, onChange,
 }) {
   const { selected, finished } = useContext(QuizContext);
 
-  function handleChange(onChange) {
+  function handleChange(onChangeReceivedFunction) {
     if (finished) {
       return;
     }
-    onChange();
+    onChangeReceivedFunction();
   }
 
   return (
@@ -71,7 +60,7 @@ function Checkbox({
         checked={selected === value}
       />
       <label htmlFor={id}>
-        {children}
+        {value}
       </label>
     </StyledCheckbox>
   );
@@ -88,5 +77,4 @@ Checkbox.propTypes = {
   value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  children: PropTypes.node.isRequired,
 };

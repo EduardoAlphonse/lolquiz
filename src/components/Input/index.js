@@ -19,7 +19,7 @@ const StyledInput = styled.div`
     background-color: transparent;
     outline: none;
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
 
     transition: all 0.2s ease;
 
@@ -47,7 +47,7 @@ function Input({ onChange, placeHolder, iconName }) {
       {
         iconName && (
           <Image
-            src={`/${iconName}.svg`}
+            src={`/icons/${iconName}.svg`}
             width={20}
             height={20}
             className='icon'
