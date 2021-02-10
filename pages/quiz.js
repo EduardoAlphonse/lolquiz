@@ -23,7 +23,7 @@ export default function QuizPage() {
   function onSubmit(event) {
     event.preventDefault();
 
-    if (db.questions[actualQuestion].answer === selected) {
+    if (db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase()) {
       setCorrectAnswers(correctAnswers + 1);
       console.log('acertou');
     } else {

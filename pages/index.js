@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import db from '../db.json';
+
 import ScreenContainer from '../src/components/ScreenContainer';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
@@ -40,7 +42,7 @@ export default function Home() {
           </Button>
         </form>
       </SmallerFrame>
-      <BiggerFrame>
+      <BiggerFrame background={db.bg}>
         Score frame
       </BiggerFrame>
     </ScreenContainer>
