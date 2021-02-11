@@ -26,25 +26,14 @@ export default function QuizPage() {
   function onSubmit(event) {
     event.preventDefault();
 
-    if (answers.length) {
-      const newAnswers = [
-        ...answers,
-        {
-          id: answers.length,
-          question: db.questions[actualQuestion].title,
-          userAnswer: selected,
-          correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
-        },
-      ];
-      setAnswers(newAnswers);
-    } else {
-      setAnswers([{
-        id: answers.length,
-        question: db.questions[actualQuestion].title,
-        userAnswer: selected,
-        correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
-      }]);
-    }
+    const newAnswers = Array.from(answers);
+    newAnswers.push({
+      id: answers.length,
+      question: db.questions[actualQuestion].title,
+      userAnswer: selected,
+      correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
+    });
+    setAnswers(newAnswers);
 
     if (actualQuestion === db.questions.length - 1) {
       setFinished(true);
