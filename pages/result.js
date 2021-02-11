@@ -58,7 +58,7 @@ function Result() {
         {
           answers.map((answer) => (
             <SummaryItem
-              key={answer.id}
+              key={`key_${answer.id}`}
               correct={answer.correct}
             >
               <p className='summary-title'>{answer.question}</p>

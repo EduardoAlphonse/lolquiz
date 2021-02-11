@@ -26,8 +26,9 @@ export default function QuizPage() {
   function onSubmit(event) {
     event.preventDefault();
 
+    const id = answers.length;
     setAnswers([...answers, {
-      id: answers.length,
+      id,
       question: db.questions[actualQuestion].title,
       userAnswer: selected,
       correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
