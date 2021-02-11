@@ -26,16 +26,12 @@ export default function QuizPage() {
   function onSubmit(event) {
     event.preventDefault();
 
-    const newAnswers = Array.from(answers);
-
-    newAnswers.push({
+    setAnswers(answers.concat({
       id: answers.length,
       question: db.questions[actualQuestion].title,
       userAnswer: selected,
       correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
-    });
-
-    setAnswers(newAnswers);
+    }));
 
     if (actualQuestion === db.questions.length - 1) {
       setFinished(true);
@@ -50,7 +46,7 @@ export default function QuizPage() {
     setTimeout(() => {
       setLoading(false);
     }, 1000 * 0.5);
-  }, []);
+  }, [answers]);
 
   return (
     <ScreenContainer value={db.questions}>

@@ -21,6 +21,7 @@ function Result() {
   const router = useRouter();
 
   const { answers } = useContext(QuizContext);
+  console.log(answers);
   const numberOfCorrectAnswers = answers.filter((answer) => answer.correct).length;
 
   return (
