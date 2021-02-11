@@ -12,8 +12,12 @@ import { QuizContext } from './quiz';
 
 const Summary = styled.div`
   margin-top: 10px;
-  > p {
+  & > p {
     margin: 15px 0;
+  }
+
+  div:first-of-type {
+    display: none;
   }
 `;
 
@@ -21,7 +25,6 @@ function Result() {
   const router = useRouter();
 
   const { answers } = useContext(QuizContext);
-  console.log(answers);
   const numberOfCorrectAnswers = answers.filter((answer) => answer.correct).length;
 
   return (

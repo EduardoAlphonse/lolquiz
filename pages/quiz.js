@@ -18,7 +18,7 @@ export const QuizContext = React.createContext();
 export default function QuizPage() {
   const [selected, setSelected] = useState('');
   const [actualQuestion, setActualQuestion] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState([{}]);
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -26,12 +26,12 @@ export default function QuizPage() {
   function onSubmit(event) {
     event.preventDefault();
 
-    setAnswers(answers.concat({
+    setAnswers([...answers, {
       id: answers.length,
       question: db.questions[actualQuestion].title,
       userAnswer: selected,
       correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
-    }));
+    }]);
 
     if (actualQuestion === db.questions.length - 1) {
       setFinished(true);
