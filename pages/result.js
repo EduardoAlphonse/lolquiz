@@ -25,7 +25,7 @@ function Result() {
 
   useEffect(() => {
     setUserAnswers(answers);
-    setNumberOfCorrectAnswers(userAnswers.filter((answer) => answer.correct).length);
+    setNumberOfCorrectAnswers(answers.filter((answer) => answer.correct).length);
   }, []);
 
   const router = useRouter();
