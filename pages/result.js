@@ -21,6 +21,7 @@ function Result() {
   const router = useRouter();
 
   const { answers } = useContext(QuizContext);
+  const numberOfCorrectAnswers = answers.filter((answer) => answer.correct).length;
 
   return (
     <SmallerFrame justify='start'>
@@ -28,10 +29,10 @@ function Result() {
         Você acertou
         {' '}
         <span style={{ color: theme.colors.primary.color }}>
-          {answers.length}
+          {numberOfCorrectAnswers}
         </span>
         {' '}
-        {answers.length > 1 ? 'perguntas' : 'pergunta'}
+        {numberOfCorrectAnswers > 1 ? 'perguntas' : 'pergunta'}
         !
       </h2>
       <p>Compartilhe com seus amigos:</p>
