@@ -27,12 +27,14 @@ export default function QuizPage() {
     event.preventDefault();
 
     const newAnswers = Array.from(answers);
+
     newAnswers.push({
       id: answers.length,
       question: db.questions[actualQuestion].title,
       userAnswer: selected,
       correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
     });
+
     setAnswers(newAnswers);
 
     if (actualQuestion === db.questions.length - 1) {
