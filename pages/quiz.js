@@ -27,12 +27,16 @@ export default function QuizPage() {
     event.preventDefault();
 
     if (answers.length) {
-      setAnswers([...answers, {
-        id: answers.length,
-        question: db.questions[actualQuestion].title,
-        userAnswer: selected,
-        correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
-      }]);
+      const newAnswers = [
+        ...answers,
+        {
+          id: answers.length,
+          question: db.questions[actualQuestion].title,
+          userAnswer: selected,
+          correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
+        },
+      ];
+      setAnswers(newAnswers);
     } else {
       setAnswers([{
         id: answers.length,
@@ -67,7 +71,7 @@ export default function QuizPage() {
             ) : (
               <SmallerFrame justify='start'>
                 {
-                  loading && <h2>Carregando questionário...</h2>
+                  loading && <h2>Carregando Quiz...</h2>
                 }
 
                 {

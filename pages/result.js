@@ -32,7 +32,7 @@ function Result() {
           {numberOfCorrectAnswers}
         </span>
         {' '}
-        {numberOfCorrectAnswers > 1 ? 'perguntas' : 'pergunta'}
+        {numberOfCorrectAnswers > 1 || numberOfCorrectAnswers === 0 ? 'perguntas' : 'pergunta'}
         !
       </h2>
       <p>Compartilhe com seus amigos:</p>
