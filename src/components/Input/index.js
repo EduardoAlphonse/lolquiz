@@ -24,7 +24,7 @@ const StyledInput = styled.div`
     transition: all 0.2s ease;
 
     :focus {
-      border-color: ${({ theme }) => theme.colors.primary}
+      border-color: ${({ theme }) => theme.colors.primary.color}
     }
   }
 

@@ -14,6 +14,12 @@ const SmallerFrame = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 30px 40px;
 
+  overflow: auto;
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+
   .title {
     @media screen and (max-width: 1400px) {
       margin-bottom: 50px;
@@ -25,10 +31,6 @@ const SmallerFrame = styled.div`
 
     font-size: 2rem;
     font-weight: 600;
-  }
-
-  .question {
-    margin: 30px 0;
   }
 
   form {

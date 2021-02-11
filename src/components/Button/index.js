@@ -32,7 +32,7 @@ const Button = styled.button`
 
   :disabled, :hover:disabled {
     background-color: ${({ theme }) => theme.colors.fadedFill};
-    color: ${({ theme }) => theme.colors.textColor.faded};
+    color: ${({ theme }) => theme.colors.text.faded};
     box-shadow: none;
   }
 

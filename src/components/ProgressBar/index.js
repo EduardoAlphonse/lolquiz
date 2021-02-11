@@ -12,7 +12,7 @@ const Progress = styled.div`
   width: ${({ completed }) => `${completed}%`};
   height: 100%;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.textColor};
+  background-color: ${({ theme }) => theme.colors.text.color};
 
   transition: width 0.2s ease;
 `;

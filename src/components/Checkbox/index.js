@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { QuizContext } from '../../../pages/quiz';
 
 const StyledCheckbox = styled.div`
-  border: 2px solid ${({ theme }) => theme.colors.textColor.color};
+  border: 2px solid ${({ theme }) => theme.colors.text.color};
   box-sizing: border-box;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -17,7 +17,7 @@ const StyledCheckbox = styled.div`
 
   label {
     font-size: 1.3rem;
-    color: ${({ theme }) => theme.colors.textColor.color};
+    color: ${({ theme }) => theme.colors.text.color};
     font-weight: 600;
 
     padding: 15px;
@@ -32,7 +32,7 @@ const StyledCheckbox = styled.div`
   }
 
   input:checked + label {
-    background-color: ${({ theme }) => theme.colors.textColor.color};
+    background-color: ${({ theme }) => theme.colors.text.color};
     color: #FFFFFF;
   }
 `;

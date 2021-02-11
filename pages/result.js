@@ -1,38 +1,68 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { theme } from '../db.json';
 
-import ScreenContainer from '../src/components/ScreenContainer';
 import SmallerFrame from '../src/components/SmallerFrame';
-import BiggerFrame from '../src/components/BiggerFrame';
 import Button from '../src/components/Button';
+import SummaryItem from '../src/components/SummaryItem';
+
+// eslint-disable-next-line import/no-cycle
+import { QuizContext } from './quiz';
+
+const Summary = styled.div`
+  margin-top: 10px;
+  > p {
+    margin: 15px 0;
+  }
+`;
 
 function Result() {
-  const { correctAnswers } = useRouter().query;
-  console.log('correct answers', correctAnswers);
+  const router = useRouter();
+
+  const { answers } = useContext(QuizContext);
 
   return (
-    <ScreenContainer>
-      <SmallerFrame justify='start'>
-        <h2>
-          Você acertou
-          {' '}
-          {correctAnswers}
-          {' '}
-          {correctAnswers > 1 ? 'perguntas' : 'pergunta'}
-          !
-        </h2>
-        <Button>
-          Copiar link do quiz
-        </Button>
-        <Button>
-          Crie seu quiz
-        </Button>
-        <Button color='red'>
-          Voltar ao início
-        </Button>
-      </SmallerFrame>
-      <BiggerFrame />
-    </ScreenContainer>
+    <SmallerFrame justify='start'>
+      <h2>
+        Você acertou
+        {' '}
+        <span style={{ color: theme.colors.primary.color }}>
+          {answers.length}
+        </span>
+        {' '}
+        {answers.length > 1 ? 'perguntas' : 'pergunta'}
+        !
+      </h2>
+      <p>Compartilhe com seus amigos:</p>
+      <Button>
+        Copiar link do quiz
+      </Button>
+      <Button>
+        Crie o seu
+      </Button>
+      <Button
+        color='red'
+        onClick={() => router.push('/')}
+      >
+        Voltar ao início
+      </Button>
+
+      <Summary>
+        <p>Resumo:</p>
+        {
+          answers.map((answer) => (
+            <SummaryItem
+              key={answer.id}
+              correct={answer.correct}
+            >
+              <p className='summary-title'>{answer.question}</p>
+              <p className='summary-answer'>{answer.userAnswer}</p>
+            </SummaryItem>
+          ))
+        }
+      </Summary>
+    </SmallerFrame>
   );
 }
 

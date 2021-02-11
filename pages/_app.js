@@ -60,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', ProductSans, sans-serif;
     letter-spacing: 0.04rem;
     font-size: 1.3rem;
-    color: ${({ theme }) => theme.colors.textColor.color}
+    color: ${({ theme }) => theme.colors.text.color}
   }
 
   h1 {
@@ -72,6 +72,15 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin: 0.8rem 0;
+  }
+
+  .question {
+    margin: 30px 0;
   }
 
   .ps {
