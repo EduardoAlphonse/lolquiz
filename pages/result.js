@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { theme } from '../db.json';
@@ -15,17 +15,20 @@ const Summary = styled.div`
   & > p {
     margin: 15px 0;
   }
-
-  div:first-of-type {
-    display: none;
-  }
 `;
 
 function Result() {
-  const router = useRouter();
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
 
   const { answers } = useContext(QuizContext);
-  const numberOfCorrectAnswers = answers.filter((answer) => answer.correct).length;
+
+  useEffect(() => {
+    setUserAnswers(answers);
+    setNumberOfCorrectAnswers(userAnswers.filter((answer) => answer.correct).length);
+  }, []);
+
+  const router = useRouter();
 
   return (
     <SmallerFrame justify='start'>
@@ -56,7 +59,7 @@ function Result() {
       <Summary>
         <p>Resumo:</p>
         {
-          answers.map((answer) => (
+          userAnswers.map((answer) => (
             <SummaryItem
               key={`key_${answer.id}`}
               correct={answer.correct}

@@ -13,17 +13,12 @@ import Checkbox from '../src/components/Checkbox';
 import ProgressBar from '../src/components/ProgressBar';
 import Result from './result';
 
-export const QuizContext = React.createContext();
+export const QuizContext = React.createContext({});
 
 export default function QuizPage() {
   const [selected, setSelected] = useState('');
   const [actualQuestion, setActualQuestion] = useState(0);
-  const [answers, setAnswers] = useState([{
-    id: 0,
-    question: '',
-    userAnswer: '',
-    correct: false,
-  }]);
+  const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -31,9 +26,8 @@ export default function QuizPage() {
   function onSubmit(event) {
     event.preventDefault();
 
-    const id = answers.length;
     setAnswers([...answers, {
-      id,
+      id: answers.length,
       question: db.questions[actualQuestion].title,
       userAnswer: selected,
       correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
@@ -52,7 +46,7 @@ export default function QuizPage() {
     setTimeout(() => {
       setLoading(false);
     }, 1000 * 0.5);
-  }, [answers]);
+  }, []);
 
   return (
     <ScreenContainer value={db.questions}>
