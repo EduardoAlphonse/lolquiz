@@ -18,7 +18,12 @@ export const QuizContext = React.createContext();
 export default function QuizPage() {
   const [selected, setSelected] = useState('');
   const [actualQuestion, setActualQuestion] = useState(0);
-  const [answers, setAnswers] = useState([{}]);
+  const [answers, setAnswers] = useState([{
+    id: 0,
+    question: '',
+    userAnswer: '',
+    correct: false,
+  }]);
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
   const [showResult, setShowResult] = useState(false);
