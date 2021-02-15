@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { theme } from '../db.json';
+import styled from 'styled-components';
+
+import copyToClipboard from 'web-copy-to-clipboard';
+import { quizUrl, theme } from '../db.json';
 
 import SmallerFrame from '../src/components/SmallerFrame';
 import Button from '../src/components/Button';
@@ -20,8 +22,17 @@ const Summary = styled.div`
 function Result() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
+  const [quizUrlCopied, setQuizUrlCopied] = useState(false);
 
   const { answers } = useContext(QuizContext);
+
+  function copyQuizLinkToClipboard() {
+    copyToClipboard(quizUrl);
+    setQuizUrlCopied(true);
+    setTimeout(() => {
+      setQuizUrlCopied(false);
+    }, 3000);
+  }
 
   useEffect(() => {
     setUserAnswers(answers);
@@ -43,12 +54,19 @@ function Result() {
         !
       </h2>
       <p>Compartilhe com seus amigos:</p>
-      <Button>
-        Copiar link do quiz
+      <Button
+        onClick={copyQuizLinkToClipboard}
+      >
+        {
+          quizUrlCopied
+            ? <i>LINK COPIADO!</i>
+            : 'Copiar link do quiz'
+        }
       </Button>
-      <Button>
+      {/* v FEATURE TO BE IMPLEMENTED LATER v */}
+      {/* <Button>
         Crie o seu
-      </Button>
+      </Button> */}
       <Button
         color='red'
         onClick={() => router.push('/')}

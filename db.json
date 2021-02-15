@@ -2,23 +2,22 @@
   "bg": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Heimerdinger_0.jpg",
   "title": "League of Quiz",
   "description": "Teste seus conhecimentos sobre League of Legends.",
+  "quizUrl": "https://lolquiz.eduardoalphonse.vercel.app",
   "questions": [
     {
-      "image": "https://images6.alphacoders.com/974/974337.jpg",
-      "title": "Qual campeão foi banido dos Solari por ter traído o Deus Sol?",
-      "description": "Essa é pra aquecer",
-      "answer": "Diana",
+      "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Diana_2.jpg",
+      "title": "Onde Diana nasceu?",
+      "answer": "Monte Targon",
       "alternatives": [
-        "Leona",
-        "Neeko",
-        "Diana",
-        "Veigar"
+        "Ionia",
+        "Ixtal",
+        "Monte Targon",
+        "Bandópolis"
       ]
     },
     {
       "image": "https://cdnb.artstation.com/p/assets/images/images/029/988/459/large/foritis-wong-blossom-yasuo-yone-c.jpg",
       "title": "Qual Campeão é conhecido por ter um passado desonrado?",
-      "description": "Faz tempo em haha",
       "answer": "Yasuo",
       "alternatives": [
         "Riven",
@@ -28,15 +27,47 @@
       ]
     },
     {
-      "image": "https://images6.alphacoders.com/974/974337.jpg",
-      "title": "Qual campeão foi banido dos Solari por ter traído o Deus Sol?",
-      "description": "Essa é pra aquecer",
-      "answer": "Diana",
+      "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Karthus_9.jpg",
+      "title": "Qual é o significado de ACE?",
+      "answer": "All Champions Eliminated",
       "alternatives": [
-        "Leona",
-        "Neeko",
-        "Diana",
-        "Veigar"
+        "All Characters Eliminated",
+        "All Champions Eliminated",
+        "All Crushed Enemies",
+        "All Crushed and Eliminated"
+      ]
+    },
+    {
+      "image": "https://i.ytimg.com/vi/Jq_NnO4meYA/maxresdefault.jpg",
+      "title": "Qual é o nome da montaria do Kled?",
+      "answer": "Skaarl",
+      "alternatives": [
+        "Lagarto",
+        "Scar",
+        "Skaarl",
+        "OOUUAA SKAARL"
+      ]
+    },
+    {
+      "image": "https://www.pcinvasion.com/wp-content/uploads/2020/08/i1597428570881557-800x400.jpeg",
+      "title": "Qual é o nome da fada da Lulu?",
+      "answer": "Pix",
+      "alternatives": [
+        "Pax",
+        "Pex",
+        "Pix",
+        "Pox"
+      ]
+    },
+    {
+      "image": "https://atribunadenizar.com/wp-content/uploads/2017/05/league_of_legends_campeonato_2014_agenda.jpg",
+      "title": "Qual desses campeões tem uma skin tema do 1º Campeonato Mundial de League of Legends?",
+      "answer": "Janna",
+      "alternatives": [
+        "Janna",
+        "Vayne",
+        "Kog'Maw",
+        "Thresh"
       ]
     }
   ],
