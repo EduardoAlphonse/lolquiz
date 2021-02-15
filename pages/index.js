@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import db from '../db.json';
 
-import Widget from '../src/components/Widget';
-import Footer from '../src/components/Footer';
-import GitHubCorner from '../src/components/GitHubCorner';
-import QuizBackground from '../src/components/QuizBackground';
+import ScreenContainer from '../src/components/ScreenContainer';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
-import QuizContainer from '../src/components/QuizContainer';
+import BiggerFrame from '../src/components/BiggerFrame';
+import SmallerFrame from '../src/components/SmallerFrame';
 
 export default function Home() {
   const [name, setName] = useState('');
@@ -17,46 +16,35 @@ export default function Home() {
 
   function submitForm(event) {
     event.preventDefault();
-    if (name) {
+    if (name.length > 2 && name.length < 16) {
       router.push(`/quiz?name=${name}`);
     }
   }
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
-      <QuizContainer>
-        <Widget>
-          <Widget.Header>
-            <h1>{db.title}</h1>
-          </Widget.Header>
-          <Widget.Content>
-            <p>{db.description}</p>
-            <form onSubmit={submitForm}>
-              <Input
-                placeholder='Escolha seu nome para jogar'
-                onChange={(event) => setName(event.target.value)}
-                value={name}
-                name={name}
-              />
-              <Button type='submit'>
-                JOGAR
-              </Button>
-            </form>
-          </Widget.Content>
-        </Widget>
-
-        <Widget>
-          <Widget.Header>
-            <h1>Quiz da galera</h1>
-          </Widget.Header>
-          <Widget.Content>
-            <p>Lorem ipsum dolor sit amet...</p>
-          </Widget.Content>
-        </Widget>
-
-        <Footer />
-      </QuizContainer>
-      <GitHubCorner projectUrl='https://github.com/EduardoAlphonse' />
-    </QuizBackground>
+    <ScreenContainer>
+      <SmallerFrame>
+        <h1 className='title'>LOL QUIZ</h1>
+        <form>
+          <p>Escolha seu nome:</p>
+          <p className='ps'>Necessário ter entre 3 e 15 caracteres.</p>
+          <Input
+            onChange={(event) => setName(event.target.value)}
+            placeHolder='Ex.: LoLSage7'
+            iconName='user'
+          />
+          <Button
+            type='subimt'
+            onClick={submitForm}
+            disabled={name.length < 3 || name.length > 15}
+          >
+            JOGAR
+          </Button>
+        </form>
+      </SmallerFrame>
+      <BiggerFrame background={db.bg}>
+        Score frame
+      </BiggerFrame>
+    </ScreenContainer>
   );
 }

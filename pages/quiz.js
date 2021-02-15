@@ -1,141 +1,119 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-one-expression-per-line */
+
+import React, { useEffect, useState } from 'react';
 import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
+
 import Button from '../src/components/Button';
+import ScreenContainer from '../src/components/ScreenContainer';
+import SmallerFrame from '../src/components/SmallerFrame';
+import BiggerFrame from '../src/components/BiggerFrame';
+import Checkbox from '../src/components/Checkbox';
+import ProgressBar from '../src/components/ProgressBar';
+import Result from './result';
 
-function LoadingWidget() {
-  return (
-    <Widget>
-      <Widget.Header>
-        Carregando...
-      </Widget.Header>
-
-      <Widget.Content>
-        [Desafio do Loading]
-      </Widget.Content>
-    </Widget>
-  );
-}
-
-function QuestionWidget({
-  question,
-  questionIndex,
-  totalQuestions,
-  onSubmit,
-}) {
-  const [selectedAlternative, setSelectedAlternative] = useState('');
-  const questionId = `question__${questionIndex}`;
-
-  return (
-    <Widget>
-      <Widget.Header>
-        {/* <BackLinkArrow href='/' /> */}
-        <h3>
-          {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
-        </h3>
-      </Widget.Header>
-
-      <img
-        alt='Descrição'
-        style={{
-          width: '100%',
-          height: '150px',
-          objectFit: 'cover',
-        }}
-        src={question.image}
-      />
-      <Widget.Content>
-        <h2>{question.title}</h2>
-        <p>{question.description}</p>
-
-        <form
-          onSubmit={(infosDoEvento) => {
-            infosDoEvento.preventDefault();
-            onSubmit();
-          }}
-        >
-          {question.alternatives.map((alternative, alternativeIndex) => {
-            const alternativeId = `alternative__${alternativeIndex}`;
-            return (
-              <Widget.Topic
-                as='label'
-                htmlFor={alternativeId}
-                selected={selectedAlternative === alternativeId}
-                key={alternativeId}
-              >
-                <input
-                  style={{ display: 'none' }}
-                  id={alternativeId}
-                  name={questionId}
-                  type='radio'
-                  onChange={() => { setSelectedAlternative(alternativeId); }}
-                />
-                {alternative}
-              </Widget.Topic>
-            );
-          })}
-
-          {/* <pre>
-            {JSON.stringify(question, null, 4)}
-          </pre> */}
-          <Button type='submit'>
-            Confirmar
-          </Button>
-        </form>
-      </Widget.Content>
-    </Widget>
-  );
-}
-
-const screenStates = {
-  QUIZ: 'QUIZ',
-  LOADING: 'LOADING',
-  RESULT: 'RESULT',
-};
+export const QuizContext = React.createContext({});
 
 export default function QuizPage() {
-  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
-  const totalQuestions = db.questions.length;
-  const [currentQuestion, setCurrentQuestion] = React.useState(0);
-  const questionIndex = currentQuestion;
-  const question = db.questions[questionIndex];
+  const [selected, setSelected] = useState('');
+  const [actualQuestion, setActualQuestion] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [finished, setFinished] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
-  }, []);
+  function onSubmit(event) {
+    event.preventDefault();
 
-  function handleSubmitQuiz() {
-    const nextQuestion = questionIndex + 1;
-    if (nextQuestion < totalQuestions) {
-      setCurrentQuestion(nextQuestion);
+    setAnswers([...answers, {
+      id: answers.length,
+      question: db.questions[actualQuestion].title,
+      userAnswer: selected,
+      correct: db.questions[actualQuestion].answer.toLowerCase() === selected.toLowerCase(),
+    }]);
+
+    if (actualQuestion === db.questions.length - 1) {
+      setFinished(true);
     } else {
-      setScreenState(screenStates.RESULT);
+      setActualQuestion(actualQuestion + 1);
     }
+
+    setSelected('');
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000 * 0.5);
+  }, []);
+
   return (
-    <QuizBackground backgroundImage={db.bg}>
-      <QuizContainer>
-        <QuizLogo />
-        {screenState === screenStates.QUIZ && (
-          <QuestionWidget
-            question={question}
-            questionIndex={questionIndex}
-            totalQuestions={totalQuestions}
-            onSubmit={handleSubmitQuiz}
-          />
-        )}
+    <ScreenContainer value={db.questions}>
+      <QuizContext.Provider value={{ selected, finished, answers }}>
+        {
+          showResult
+            ? (
+              <Result />
+            ) : (
+              <SmallerFrame justify='start'>
+                {
+                  loading && <h2>Carregando Quiz...</h2>
+                }
 
-        {screenState === screenStates.LOADING && <LoadingWidget />}
+                {
+                  finished && (
+                    <>
+                      <h2>Parabéns, você finalizou o Quiz!</h2>
+                      <Button
+                        onClick={() => setShowResult(true)}
+                      >
+                        VER PONTUAÇÃO
+                      </Button>
+                    </>
+                  )
+                }
 
-        {screenState === screenStates.RESULT && <div>Você acertou X questões, parabéns!</div>}
-      </QuizContainer>
-    </QuizBackground>
+                {
+                  !loading && !finished && (
+                    <>
+                      <h2>Pergunta {actualQuestion + 1} de {db.questions.length}:</h2>
+                      <ProgressBar
+                        actualQuestion={actualQuestion + 1}
+                        numberOfQuestions={db.questions.length}
+                      />
+                      <p className='question'>{db.questions[actualQuestion].title}</p>
+                      <form onSubmit={onSubmit}>
+                        {
+                          db.questions[actualQuestion].alternatives.map((alternative, index) => (
+                            <Checkbox
+                              // eslint-disable-next-line react/no-array-index-key
+                              key={`${index}_${alternative}`}
+                              id={`alternative_${index}`}
+                              name='alternative'
+                              value={alternative}
+                              onChange={() => setSelected(alternative)}
+                            />
+                          ))
+                        }
+                        <Button
+                          disabled={!selected}
+                        >
+                          {selected ? 'CONFIRMAR' : 'Escolha uma resposta'}
+                        </Button>
+                      </form>
+                    </>
+                  )
+                }
+              </SmallerFrame>
+            )
+        }
+      </QuizContext.Provider>
+      <BiggerFrame
+        background={finished
+          ? 'https://wallpapercave.com/wp/wp2154088.jpg'
+          : db.questions[actualQuestion].image}
+      />
+    </ScreenContainer>
   );
 }

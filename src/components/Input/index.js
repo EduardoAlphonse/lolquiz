@@ -1,45 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Image from 'next/image';
 
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 10px;
+const StyledInput = styled.div`
+  position: relative;
 
-  color: #FFFFFF;
-  background-color: transparent;
-  border: 1px solid #3B426D;
-  border-radius: 4px;
+  input {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: ${({ theme }) => theme.colors.fadedFill};
 
-  font-size: 1rem;
-  margin-top: 24px;
-  outline: none;
+    width: 100%;
+    padding: 15px;
+    padding-left: ${({ iconName }) => (iconName ? '50px' : '15px')};
 
-  &:focus {
-    border-color: #7A81AF;
+    background-color: transparent;
+    outline: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+
+    :focus {
+      border-color: ${({ theme }) => theme.colors.primary.color}
+    }
+  }
+
+  input + div {
+    position: absolute !important;
+    top: 15px;
+    left: 15px;
   }
 `;
 
-function Input({ placeholder, onChange, ...props }) {
+function Input({ onChange, placeHolder, iconName }) {
   return (
     <StyledInput
-      placeholder={placeholder}
-      onChange={onChange}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    />
+      iconName={iconName}
+    >
+      <input
+        onChange={onChange}
+        placeholder={placeHolder}
+      />
+      {
+        iconName && (
+          <Image
+            src={`/icons/${iconName}.svg`}
+            width={20}
+            height={20}
+            className='icon'
+          />
+        )
+      }
+    </StyledInput>
   );
 }
 
+export default Input;
+
 Input.defaultProps = {
-  value: '',
+  placeHolder: '',
+  iconName: '',
 };
 
 Input.propTypes = {
-  placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  placeHolder: PropTypes.string,
+  iconName: PropTypes.string,
 };
-
-export default Input;
