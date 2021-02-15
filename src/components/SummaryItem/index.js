@@ -2,8 +2,12 @@ import styled, { css } from 'styled-components';
 
 const StyledSummaryItem = styled.div`
   padding: 5px 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+
+  border: 0px;
+  border-left-width: 4px;
+  border-style: solid;
+  background-color: #FFFFFF;
 
   p {
     margin: 0;
@@ -20,15 +24,12 @@ const StyledSummaryItem = styled.div`
   .summary-answer {
     font-size: 1.5rem;
     font-weight: 600;
-    ${({ theme, correct }) => (
+    /* ${({ theme, correct }) => (
     correct
       ? css`color: ${theme.colors.green.color};`
       : css`color: ${theme.colors.red.color};`
-  )};
+  )}; */
   }
-
-  border-width: 2px;
-  border-style: solid;
   
   ${({ theme, correct }) => (
     correct

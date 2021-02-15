@@ -24,13 +24,13 @@ export default function Home() {
   return (
     <ScreenContainer>
       <SmallerFrame>
-        <h1 className='title'>LOL QUIZ</h1>
+        <h1 className='title'>{db.title}</h1>
         <form>
           <p>Escolha seu nome:</p>
           <p className='ps'>Necessário ter entre 3 e 15 caracteres.</p>
           <Input
             onChange={(event) => setName(event.target.value)}
-            placeHolder='Ex.: LoLSage7'
+            placeHolder='Ex.: QuizMaster'
             iconName='user'
           />
           <Button
@@ -39,10 +39,14 @@ export default function Home() {
             disabled={name.length < 3 || name.length > 15}
           >
             JOGAR
+            {' '}
+            {name
+              ? `como ${name}`
+              : ''}
           </Button>
         </form>
       </SmallerFrame>
-      <BiggerFrame background={db.bg} />
+      <BiggerFrame background={db.homeBg} />
     </ScreenContainer>
   );
 }

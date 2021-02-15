@@ -1,6 +1,7 @@
 {
-  "bg": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Heimerdinger_0.jpg",
-  "title": "League of Quiz",
+  "homeBg": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Heimerdinger_0.jpg",
+  "finalBg": "https://wallpapercave.com/wp/wp2154088.jpg",
+  "title": "Quiz of Legends",
   "description": "Teste seus conhecimentos sobre League of Legends.",
   "quizUrl": "https://lolquiz.eduardoalphonse.vercel.app",
   "questions": [

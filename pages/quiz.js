@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import React, { useEffect, useState } from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
 import db from '../db.json';
 
 import Button from '../src/components/Button';
@@ -45,7 +46,7 @@ export default function QuizPage() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000 * 0.5);
+    }, 1000 * 2);
   }, []);
 
   return (
@@ -58,7 +59,16 @@ export default function QuizPage() {
             ) : (
               <SmallerFrame justify='start'>
                 {
-                  loading && <h2>Carregando Quiz...</h2>
+                  loading && (
+                    <>
+                      <h2>Carregando quiz...</h2>
+                      <Player
+                        src='https://assets3.lottiefiles.com/private_files/lf30_46kycmnm.json'
+                        autoplay={loading}
+
+                      />
+                    </>
+                  )
                 }
 
                 {
@@ -111,7 +121,7 @@ export default function QuizPage() {
       </QuizContext.Provider>
       <BiggerFrame
         background={finished
-          ? 'https://wallpapercave.com/wp/wp2154088.jpg'
+          ? db.finalBg
           : db.questions[actualQuestion].image}
       />
     </ScreenContainer>
