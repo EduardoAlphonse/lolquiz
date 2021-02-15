@@ -42,9 +42,7 @@ export default function Home() {
           </Button>
         </form>
       </SmallerFrame>
-      <BiggerFrame background={db.bg}>
-        Score frame
-      </BiggerFrame>
+      <BiggerFrame background={db.bg} />
     </ScreenContainer>
   );
 }
