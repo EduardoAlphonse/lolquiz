@@ -41,6 +41,7 @@ export default class MyDocument extends Document {
           <meta property='og:url' content='https://lolquiz.eduardoalphonse.vercel.app' />
           <meta property='og:title' content='Quiz of Legends' />
           <meta property='og:description' content='This is a web application of Quiz about League of Legends' />
+          <script data-ad-client='ca-pub-9906786180385588' async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
         </Head>
         <body>
           <Main />

@@ -3,7 +3,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { Player } from '@lottiefiles/react-lottie-player';
 import db from '../db.json';
 
@@ -51,85 +50,80 @@ export default function QuizPage() {
   }, []);
 
   return (
-    <>
-      <Head>
-        <script data-ad-client='ca-pub-9906786180385588' async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' />
-      </Head>
-      <ScreenContainer value={db.questions}>
-        <QuizContext.Provider value={{ selected, finished, answers }}>
-          {
-            showResult
-              ? (
-                <Result />
-              ) : (
-                <SmallerFrame justify='start'>
-                  {
-                    loading && (
-                      <>
-                        <h2>Carregando quiz...</h2>
-                        <Player
-                          src='https://assets3.lottiefiles.com/private_files/lf30_46kycmnm.json'
-                          autoplay={loading}
+    <ScreenContainer value={db.questions}>
+      <QuizContext.Provider value={{ selected, finished, answers }}>
+        {
+          showResult
+            ? (
+              <Result />
+            ) : (
+              <SmallerFrame justify='start'>
+                {
+                  loading && (
+                    <>
+                      <h2>Carregando quiz...</h2>
+                      <Player
+                        src='https://assets3.lottiefiles.com/private_files/lf30_46kycmnm.json'
+                        autoplay={loading}
 
-                        />
-                      </>
-                    )
-                  }
+                      />
+                    </>
+                  )
+                }
 
-                  {
-                    finished && (
-                      <>
-                        <h2>Parabéns, você finalizou o Quiz!</h2>
+                {
+                  finished && (
+                    <>
+                      <h2>Parabéns, você finalizou o Quiz!</h2>
+                      <Button
+                        onClick={() => setShowResult(true)}
+                      >
+                        VER PONTUAÇÃO
+                      </Button>
+                    </>
+                  )
+                }
+
+                {
+                  !loading && !finished && (
+                    <>
+                      <h2>Pergunta {actualQuestion + 1} de {db.questions.length}:</h2>
+                      <ProgressBar
+                        actualQuestion={actualQuestion + 1}
+                        numberOfQuestions={db.questions.length}
+                      />
+                      <p className='question'>{db.questions[actualQuestion].title}</p>
+                      <form onSubmit={onSubmit}>
+                        {
+                          db.questions[actualQuestion].alternatives.map((alternative, index) => (
+                            <Checkbox
+                              // eslint-disable-next-line react/no-array-index-key
+                              key={`${index}_${alternative}`}
+                              id={`alternative_${index}`}
+                              name='alternative'
+                              value={alternative}
+                              onChange={() => setSelected(alternative)}
+                            />
+                          ))
+                        }
                         <Button
-                          onClick={() => setShowResult(true)}
+                          disabled={!selected}
                         >
-                          VER PONTUAÇÃO
+                          {selected ? 'CONFIRMAR' : 'Escolha uma resposta'}
                         </Button>
-                      </>
-                    )
-                  }
-
-                  {
-                    !loading && !finished && (
-                      <>
-                        <h2>Pergunta {actualQuestion + 1} de {db.questions.length}:</h2>
-                        <ProgressBar
-                          actualQuestion={actualQuestion + 1}
-                          numberOfQuestions={db.questions.length}
-                        />
-                        <p className='question'>{db.questions[actualQuestion].title}</p>
-                        <form onSubmit={onSubmit}>
-                          {
-                            db.questions[actualQuestion].alternatives.map((alternative, index) => (
-                              <Checkbox
-                                // eslint-disable-next-line react/no-array-index-key
-                                key={`${index}_${alternative}`}
-                                id={`alternative_${index}`}
-                                name='alternative'
-                                value={alternative}
-                                onChange={() => setSelected(alternative)}
-                              />
-                            ))
-                          }
-                          <Button
-                            disabled={!selected}
-                          >
-                            {selected ? 'CONFIRMAR' : 'Escolha uma resposta'}
-                          </Button>
-                        </form>
-                      </>
-                    )
-                  }
-                </SmallerFrame>
-              )
-          }
-        </QuizContext.Provider>
-        <BiggerFrame
-          background={finished
-            ? db.finalBg
-            : db.questions[actualQuestion].image}
-        />
-      </ScreenContainer>
-    </>
+                      </form>
+                    </>
+                  )
+                }
+              </SmallerFrame>
+            )
+        }
+      </QuizContext.Provider>
+      <BiggerFrame
+        background={finished
+          ? db.finalBg
+          : db.questions[actualQuestion].image}
+      />
+    </ScreenContainer>
   );
 }
