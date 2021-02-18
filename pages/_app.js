@@ -97,7 +97,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>LoL Quiz</title>
+        <title>Quiz of Legends</title>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
