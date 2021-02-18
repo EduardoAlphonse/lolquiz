@@ -1,8 +1,11 @@
+/* eslint-disable react/self-closing-comp */
 import React from 'react';
 import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+
+import AdSense from 'react-adsense';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -46,7 +49,16 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <AdSense.Google
+            client='ca-pub-9906786180385588'
+            slot='4796733160'
+            style={{ display: 'block' }}
+            format='auto'
+            responsive='true'
+            layoutKey='-gw-1+2a-9x+5c'
+          />
         </body>
+        <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
       </Html>
     );
   }
