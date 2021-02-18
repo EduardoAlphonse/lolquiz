@@ -36,6 +36,11 @@ export default class MyDocument extends Document {
         <Head>
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap' rel='stylesheet' />
+          <meta property='og:image' content='https://raw.githubusercontent.com/EduardoAlphonse/lolquiz/main/readme-assets/home.png' />
+          <meta property='og:type' content='website' />
+          <meta property='og:url' content='https://lolquiz.eduardoalphonse.vercel.app' />
+          <meta property='og:title' content='Quiz of Legends' />
+          <meta property='og:description' content='This is a web application of Quiz about League of Legends' />
         </Head>
         <body>
           <Main />
