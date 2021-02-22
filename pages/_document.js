@@ -5,8 +5,6 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import AdSense from 'react-adsense';
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
@@ -44,21 +42,11 @@ export default class MyDocument extends Document {
           <meta property='og:url' content='https://lolquiz.eduardoalphonse.vercel.app' />
           <meta property='og:title' content='Quiz of Legends' />
           <meta property='og:description' content='This is a web application of Quiz about League of Legends' />
-          <script data-ad-client='ca-pub-9906786180385588' async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
         </Head>
         <body>
           <Main />
           <NextScript />
-          <AdSense.Google
-            client='ca-pub-9906786180385588'
-            slot='4796733160'
-            style={{ display: 'block' }}
-            format='auto'
-            responsive='true'
-            layoutKey='-gw-1+2a-9x+5c'
-          />
         </body>
-        <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
       </Html>
     );
   }
